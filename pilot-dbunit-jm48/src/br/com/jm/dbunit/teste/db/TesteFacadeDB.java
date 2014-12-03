@@ -1,4 +1,5 @@
 package br.com.jm.dbunit.teste.db;
+/* http://www.devmedia.com.br/artigo-java-magazine-48-iniciando-com-o-dbunit/8535 */
 
 import br.com.jm.dbunit.modelo.Facade;
 
@@ -41,9 +42,9 @@ public class TesteFacadeDB extends TesteDB {
 	}
 
 	public void testCompraTransacaoExcessiva() {
-		facade.comprar("1111111111111111", 200);
+		facade.carregar("1111111111111111", 200);
 		facade.comprar("1111111111111111", 160);
-		verificarBanco("registrosCompraTransacaoExcessiva.xml", "cartao", "auditoria");
-	}
+		verificarBanco("registrosCompraTransacaoExcessiva.xml", "cartao", "auditoria");			
+	}	
 
 }

@@ -33,10 +33,11 @@ public abstract class TesteDB extends DBTestCase {
 	}
 	
 	protected DatabaseOperation getTearDownOperation() throws Exception {
-		return DatabaseOperation.DELETE_ALL;
+		//return DatabaseOperation.DELETE_ALL;
+		return DatabaseOperation.NONE;
 	}
 	
-	public void verificarBanco(String arquivoDadosEsperados, String... tabelas) {
+	protected void verificarBanco(String arquivoDadosEsperados, String... tabelas) {
 		try {
 			for (String tabela : tabelas) {
 				// dados do banco
@@ -44,19 +45,20 @@ public abstract class TesteDB extends DBTestCase {
 				ITable dadosBanco = dataSetBanco.getTable(tabela);
 				
 				// carrega os dados esperados de um dataset XML
-				IDataSet dataSetEsperado = new FlatXmlDataSet(
-						new File(arquivoDadosEsperados));
+				IDataSet dataSetEsperado = new FlatXmlDataSet(new File(
+						arquivoDadosEsperados));
 				ITable dadosEsperados = dataSetEsperado.getTable(tabela);
-				
+
 				// filtra as colunas para corresponder ao XML
-				ITable dadosFiltrados = DefaultColumnFilter.includedColumnsTable(
-						dadosBanco, dadosEsperados.getTableMetaData().getColumns());
+				ITable dadosFiltrados = DefaultColumnFilter
+						.includedColumnsTable(dadosBanco, dadosEsperados
+								.getTableMetaData().getColumns());
 				
 				// se a tabela estiver vazia compara apenas quantidade
 				if (dadosEsperados.getRowCount() == 0) {
 					assertEquals(dadosFiltrados.getRowCount(), 0);
 				} else {
-					// verifica se os dados esperado correspondem aos do banco
+					// verifica se os dados esperados correspondem aos do banco
 					Assertion.assertEquals(dadosEsperados, dadosFiltrados);
 				}
 			}

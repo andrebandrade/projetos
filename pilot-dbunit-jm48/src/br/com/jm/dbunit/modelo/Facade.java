@@ -30,12 +30,12 @@ public class Facade {
 	public void carregar(String numero, float valor) {
 		try {
 			cartaoFacade.carregar(numero, valor);
-			
 			if (valor > Constantes.VALOR_MIN_AUDIT) {
 				auditoriaFacade.auditar(numero, valor, Constantes.AUDIT_CARGA);
 			}
 		} catch (CargaExcessivaExcpetion e) {
-			auditoriaFacade.auditar(numero, valor, Constantes.AUDIT_CARGA_EXCESSIVA);
+			auditoriaFacade.auditar(numero, valor,
+					Constantes.AUDIT_CARGA_EXCESSIVA);
 		}
 	} // fim do metodo carregar
 	
