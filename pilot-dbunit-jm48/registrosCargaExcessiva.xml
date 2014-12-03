@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <cartao numero="1111111111111111" 
+          nome="Andre"			
+          saldo="100" />
+
+  <auditoria cartao="1111111111111111" 
+             descricao="Carga excede limite"			
+             valor="550" /> 
+</dataset>            
