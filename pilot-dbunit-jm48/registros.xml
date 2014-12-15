@@ -3,6 +3,5 @@
   <cartao numero="1111111111111111" 
           nome="Andre"			
           saldo="100" />
-          
-  <auditoria />          
+  <auditoria />
 </dataset>
